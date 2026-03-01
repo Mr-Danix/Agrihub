@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><title>AgriHub | Home</title><link rel="stylesheet" href="style2.css">
+    <style>
+.profile-pic{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.profile-pic img{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #fff;
+    box-shadow:0 8px 25px rgba(0,0,0,0.4);
+    transition:0.3s;
+}
+
+.profile-pic img:hover{
+    transform:scale(1.05);
+}
+
+.profile-pic input{
+    display:none;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">AgriHub</div>
+        <nav>
+            <a href="farmer.html" class="nav-btn ">Home</a>
+            <a href="sell.html" class="nav-btn">Sell</a>
+            
+            <a href="contact2.html" class="nav-btn">Contact</a>
+            <button onclick="toggleTheme()" style="background:none; border:none; cursor:pointer; font-size:1.2rem">🌓</button>
+            <div class="profile-pic" onclick="showLogout()">
+    <img id="preview" src="https://via.placeholder.com/110" style="cursor:pointer;">
+</div>
+
+<!-- Logout Popup -->
+<div id="logoutBox" style="display:none; position:absolute; top:120px; right:20px; background:#fff; padding:10px; border:1px solid #ccc; border-radius:5px;">
+    <button class="btn-main" onclick="logout()">Logout as A Farmer</button>
+</div>
+        </nav>
+    </header>
+    <main class="wrap">
+        <div class="panel fade-in" style="text-align:center; padding:80px 20px;">
+            <h1 style="font-size:2.5rem">Ethiopia's Digital Harvest</h1>
+            <p style="margin:20px 0; max-width:600px; margin-inline:auto; "><strong><b>  Connect directly with local Buyers.</b></strong></p>
+            <button class="btn-main" style="width:auto" onclick="window.location.href='sell.html'">Start Selling!</button>
+        </div>
+    </main>
+    <script>
+        
+      function showLogout() {
+    var box = document.getElementById("logoutBox");
+    box.style.display = box.style.display === "none" ? "block" : "none";
+}
+document.addEventListener('DOMContentLoaded', () => {
+    const savedImage = localStorage.getItem('userPFP');
+    const preview = document.getElementById("preview");
+    
+    // If a picture was saved in localStorage, display it
+    if (savedImage && preview) {
+        preview.src = savedImage;
+    }
+});
+function logout() {
+    // This line specifically deletes the saved photo from the browser's memory
+    localStorage.removeItem('userPFP'); 
+    
+    // Then move to the index/login page
+    window.location.href = "index.html";
+}
+
+function logout() {
+    // Redirect to sign in page
+    window.location.href = "auth.html"; 
+}
+    
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

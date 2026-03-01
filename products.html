@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>AgriHub | Home</title><link rel="stylesheet" href="style.css"></head>
+<body>
+    <header>
+        <div class="logo">AgriHub</div>
+        <nav>
+            <a href="home.html" class="nav-btn ">Home</a>
+            <a href="products.html" class="nav-btn">Products</a>
+            <a href="cart.html" class="nav-btn">Cart (<span id="cartCount">0</span>)</a>
+            <a href="contact.html" class="nav-btn">Contact</a>
+            <button onclick="toggleTheme()" style="background:none; border:none; cursor:pointer; font-size:1.2rem">🌓</button>
+        </nav>
+    </header>
+    <main class="wrap">
+        <h2 style="margin-bottom:30px">Marketplace</h2>
+        <div id="prodGrid" class="grid"></div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

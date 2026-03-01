@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><title>AgriHub | Home</title><link rel="stylesheet" href="style2.css">
+    <style>
+         .profile-pic{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.profile-pic img{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #fff;
+    box-shadow:0 8px 25px rgba(0,0,0,0.4);
+    transition:0.3s;
+}
+
+.profile-pic img:hover{
+    transform:scale(1.05);
+}
+
+.profile-pic input{
+    display:none;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">AgriHub</div>
+        <nav>
+            <a href="farmer.html" class="nav-btn ">Home</a>
+            <a href="sell.html" class="nav-btn">Sell</a>
+            
+            <a href="contact2.html" class="nav-btn">Contact</a>
+            
+        </nav>
+    </header>
+    <main class="wrap">
+        <div class="grid">
+            <div class="panel fade-in">
+                <h2>Contact us</h2>
+                <p class="muted">Have questions about your selling process? Send us a message.</p>
+                <form onsubmit="sendContact(event)" id="contactForm" style="margin-top:20px;">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <textarea rows="5" placeholder="Your Message..." required></textarea>
+                    <button class="btn-main">Send Message</button>
+                </form>
+                <div id="statusMsg" style="margin-top:15px; font-weight:bold; color:var(--primary)"></div>
+            </div>
+            
+        </div>
+    </main>
+     <script>
+        function showLogout() {
+    var box = document.getElementById("logoutBox");
+    box.style.display = box.style.display === "none" ? "block" : "none";
+}
+
+function logout() {
+    // Redirect to sign in page
+    window.location.href = "auth.html"; 
+}
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

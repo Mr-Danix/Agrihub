@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><title>AgriHub | Home</title><link rel="stylesheet" href="style.css">
+    <style>
+        body{
+            background-image: url('1.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        .panel { 
+            background: #b87e7e;
+            padding: 30px; 
+            border-radius: 16px; 
+            border: 1px solid var(--border); 
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); 
+        }
+         .profile-pic{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.profile-pic img{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #fff;
+    box-shadow:0 8px 25px rgba(0,0,0,0.4);
+    transition:0.3s;
+}
+
+.profile-pic img:hover{
+    transform:scale(1.05);
+}
+
+.profile-pic input{
+    display:none;
+}
+.panel{background:var(--card);color: black; border-radius:10px;padding:100px;margin: 30px; box-shadow:0 1px 3px rgba(2,6,23,0.06)}
+    .how{color: black;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    @media (max-width:700px){.how{grid-template-columns:1fr}}
+    .step{color: black;padding:12px;border-radius:8px;background:linear-gradient(180deg,#ffffff, #fbfffb);border:1px solid #edf7ee}
+    .muted{color: black;color:var(--muted);font-size:14px}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">AgriHub</div>
+       
+    </header>
+    
+        <div class="panel">
+          <h2 style="margin:0 0 8px">How it works</h2>
+          <p class="small"></p>
+          <div class="how" aria-hidden>
+        <div class="step"><strong>1. Farmers Sign Up</strong>
+          <div class="muted">Create account, add products with quantity, price, harvest date and location.</div></div>
+        <div class="step"><strong>2. Buyers Browse</strong>
+          <div class="muted">Filter by category or region; view price, available qty, and delivery options.</div></div>
+        <div class="step"><strong>3. Place Orders</strong>
+          <div class="muted">Choose delivery or pickup; add items to cart and checkout.</div></div>
+        <div class="step"><strong>4. Payment</strong>
+          <div class="muted">Pay with Telebirr, CBE Birr, other emoney, or cash on delivery.</div></div>
+        <div class="step"><strong>5. Delivery</strong>
+          <div class="muted">Farmers or local couriers deliver.</div></div>
+        <div class="step"><strong>6. Feedback</strong>
+          <div class="muted">Buyers rate farmers and products; farmers get improvement tips.</div></div>
+          
+          
+          </div>
+        </div>
+      </div>
+    <center><button class="btn-main" style="width:200px; height:80px; margin-bottom: 30px; " onclick="window.location.href='auth.html'">Join now!</button></center>
+    <script>
+        function showLogout() {
+    var box = document.getElementById("logoutBox");
+    box.style.display = box.style.display === "none" ? "block" : "none";
+}
+
+function logout() {
+    // Redirect to sign in page
+    window.location.href = "auth.html"; 
+}
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

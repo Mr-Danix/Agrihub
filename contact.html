@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>AgriHub | Home</title><link rel="stylesheet" href="style.css"></head>
+<body>
+    <header>
+        <div class="logo">AgriHub</div>
+        <nav>
+            <a href="home.html" class="nav-btn ">Home</a>
+            <a href="products.html" class="nav-btn">Products</a>
+            <a href="cart.html" class="nav-btn">Cart (<span id="cartCount">0</span>)</a>
+            <a href="contact.html" class="nav-btn">Contact</a>
+            <button onclick="toggleTheme()" style="background:none; border:none; cursor:pointer; font-size:1.2rem">🌓</button>
+        </nav>
+    </header>
+    <main class="wrap">
+        <div class="grid">
+            <div class="panel fade-in">
+                <h2>Contact us</h2>
+                <p class="muted">Have questions about your order or our farmers? Send us a message.</p>
+                <form onsubmit="sendContact(event)" id="contactForm" style="margin-top:20px;">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <textarea rows="5" placeholder="Your Message..." required></textarea>
+                    <button class="btn-main">Send Message</button>
+                </form>
+                <div id="statusMsg" style="margin-top:15px; font-weight:bold; color:var(--primary)"></div>
+            </div>
+            
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
