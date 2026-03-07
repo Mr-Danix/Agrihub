@@ -1,6 +1,6 @@
 # Agrihub
 
-A simple agriculture website/project. 
+A simple agriculture website/project.
 
 ## 🌍 Live Demo
 
