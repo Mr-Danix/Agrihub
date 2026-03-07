@@ -13,6 +13,7 @@ https://mr-danix.github.io/Agrihub/
 - Simple navigation
 
 ## 🛠 Tech Used
+
 - HTML
 - CSS
 - JavaScript
