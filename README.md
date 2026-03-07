@@ -1,6 +1,7 @@
 # Agrihub
 
 A simple agriculture website/project.
+
 ## 🌍 Live Demo
 https://mr-danix.github.io/Agrihub/
 
