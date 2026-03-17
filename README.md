@@ -2,7 +2,7 @@
 
 A simple agriculture website/project.
 
-## 🌍 Live Demo 
+## 🌍 Live Demo
 
 https://mr-danix.github.io/Agrihub/
 
