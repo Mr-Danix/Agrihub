@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"><title>AgriHub | Contact</title><link rel="stylesheet" href="style2.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
+    <style> <form action="https://formspree.io/f/mreygand" method="POST" onsubmit="handleFormSubmit(event)">
          .profile-pic{
     text-align:center;
     margin-bottom:25px;
@@ -44,7 +44,7 @@
             <div class="panel fade-in">
                 <h2>Contact us</h2>
                 <p class="muted">Have questions about your selling process? Send us a message.</p>
-                 <form action="https://formspree.io/f/mreygand" method="POST" onsubmit="handleFormSubmit(event)">
+                 <form onsubmit="sendContact(event)" id="contactForm" style="margin-top:20px;">
                     <input type="text" placeholder="Full Name" required>
                     <input type="email" placeholder="Email Address" required>
                     <textarea rows="5" placeholder="Your Message..." required></textarea>
