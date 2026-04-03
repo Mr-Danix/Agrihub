@@ -44,7 +44,7 @@
             <div class="panel fade-in">
                 <h2>Contact us</h2>
                 <p class="muted">Have questions about your selling process? Send us a message.</p>
-                <form onsubmit="sendContact(event)" id="contactForm" style="margin-top:20px;">
+                 <form action="https://formspree.io/f/mreygand" method="POST" onsubmit="handleFormSubmit(event)">
                     <input type="text" placeholder="Full Name" required>
                     <input type="email" placeholder="Email Address" required>
                     <textarea rows="5" placeholder="Your Message..." required></textarea>
