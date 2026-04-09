@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>AgriHub | Cart</title><link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    /* QR Code Container */
+.qr-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    text-align: center;
+}
+
+.qr-container:hover {
+    transform: scale(1.1);
+    border-color: #2ecc71; /* AgriHub Green */
+}
+
+.qr-container img {
+    width: 100px;  /* Adjust size as needed */
+    height: 110px;
+    display: block;
+    border-radius: 8px;
+}
+
+.qr-container span {
+    color: white;
+    font-size: 0.7rem;
+    display: block;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+/* Hide on very small screens to save space */
+@media (max-width: 480px) {
+    .qr-container {
+        bottom: 10px;
+        right: 10px;
+        transform: scale(0.8);
+    }
+}
+</style></head>
+<body>
+    <header>
+        <div class="logo">AgriHub</div>
+        <nav>
+            <a href="home.html" class="nav-btn ">Home</a>
+            <a href="products.html" class="nav-btn">Products</a>
+            <a href="cart.html" class="nav-btn">Cart (<span id="cartCount">0</span>)</a>
+            <a href="contact.html" class="nav-btn">Contact</a>
+            
+            <button onclick="toggleTheme()" style="background:none; border:none; cursor:pointer; font-size:1.2rem">🌓</button>
+            <div id="google_translate_element"></div>
+
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,am,om,ti,so,aa',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+}
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        </nav>
+        
+    </header>
+    <main class="wrap">
+        <div class="panel fade-in" style="max-width:600px; margin:0 auto;">
+            <h2>My Selection</h2>
+            <div id="cartItems" style="margin:20px 0;"></div>
+            <div style="display:flex; justify-content:space-between; font-size:1.4rem; font-weight:bold; margin-top:20px;">
+                <span>Total:</span><span id="cartTotal" style="color:var(--primary)">0 ETB</span>
+            </div>
+            <button class="btn-main" onclick="proceedToCheckout()" style="margin-top:20px">Checkout</button>
+        </div>
+    </main>
+    <div class="chat-launcher" onclick="toggleChat()">
+    💬
+</div>
+
+<div id="chatWidget">
+    <div class="widget-header">
+        <span>AgriHub Assistant</span>
+        <span onclick="toggleChat()" style="cursor:pointer">✕</span>
+    </div>
+    <iframe src="chatbot.html" id="chatFrame"></iframe>
+</div>
+
+<script>
+function toggleChat() {
+    const widget = document.getElementById('chatWidget');
+    if (widget.style.display === 'none' || widget.style.display === '') {
+        widget.style.display = 'block';
+        widget.classList.add('fade-in'); // Reuse your existing animation
+    } else {
+        widget.style.display = 'none';
+    }
+}
+</script>
+    <script src="script.js"></script>
+    <script>
+       
+    </script>
+</body>
+</html>

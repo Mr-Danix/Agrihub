@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><title>AgriHub | Contact</title><link rel="stylesheet" href="style2.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+         .profile-pic{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.profile-pic img{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #fff;
+    box-shadow:0 8px 25px rgba(0,0,0,0.4);
+    transition:0.3s;
+}
+
+.profile-pic img:hover{
+    transform:scale(1.05);
+}
+
+.profile-pic input{
+    display:none;
+}
+   /* QR Code Container */
+.qr-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    text-align: center;
+}
+
+.qr-container:hover {
+    transform: scale(1.1);
+    border-color: #2ecc71; /* AgriHub Green */
+}
+
+.qr-container img {
+    width: 100px;  /* Adjust size as needed */
+    height: 110px;
+    display: block;
+    border-radius: 8px;
+}
+
+.qr-container span {
+    color: white;
+    font-size: 0.7rem;
+    display: block;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+/* Hide on very small screens to save space */
+@media (max-width: 480px) {
+    .qr-container {
+        bottom: 10px;
+        right: 10px;
+        transform: scale(0.8);
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">AgriHub</div>
+        <nav>
+            <a href="farmer.html" class="nav-btn ">Home</a>
+            <a href="sell.html" class="nav-btn">Sell</a>
+            
+            <a href="contact2.html" class="nav-btn">Contact</a>
+            <div id="google_translate_element"></div>
+
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,am,om,ti,so,aa',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+}
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            
+        </nav>
+    </header>
+    <main class="wrap">
+        <div class="grid">
+            <div class="panel fade-in">
+                <h2>Contact us</h2>
+                <p class="muted">Have questions about your selling process? Send us a message.</p>
+                <form id="contactForm" style="margin-top:20px;">
+                    <input type="text" id="name" placeholder="Full Name" required>
+                    <input type="tel" id="phone" placeholder="Phone Number" required>
+                    <textarea id="message" rows="5" placeholder="Your Message..." required></textarea>
+                    <button type="submit" class="btn-main">Send Message</button>
+                </form>
+                <div id="statusMsg" style="margin-top:15px; font-weight:bold; color:var(--primary)"></div>
+            </div>
+            
+        </div>
+    </main>
+    <div class="chat-launcher" onclick="toggleChat()">
+    💬
+</div>
+
+<div id="chatWidget">
+    <div class="widget-header">
+        <span>AgriHub Assistant</span>
+        <span onclick="toggleChat()" style="cursor:pointer">✕</span>
+    </div>
+    <iframe src="chatbot.html" id="chatFrame"></iframe>
+</div>
+
+<script>
+function toggleChat() {
+    const widget = document.getElementById('chatWidget');
+    if (widget.style.display === 'none' || widget.style.display === '') {
+        widget.style.display = 'block';
+        widget.classList.add('fade-in'); // Reuse your existing animation
+    } else {
+        widget.style.display = 'none';
+    }
+}
+</script>
+     <script>
+        function showLogout() {
+    var box = document.getElementById("logoutBox");
+    box.style.display = box.style.display === "none" ? "block" : "none";
+}
+
+function logout() {
+    // Redirect to sign in page
+    window.location.href = "auth.html"; 
+}
+    </script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            try {
+                const response = await fetch('https://formspree.io/f/mreygand', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        phone: phone,
+                        message: message
+                    })
+                });
+                
+                if (response.ok) {
+                    alert('Message sent successfully!');
+                    document.getElementById('contactForm').reset();
+                } else {
+                    alert('Failed to send message. Please try again.');
+                }
+            } catch (error) {
+                alert('Error sending message. Please check your connection and try again.');
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

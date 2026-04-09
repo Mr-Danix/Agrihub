@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriHub | About</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* High-Intensity Glassmorphism */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px) saturate(150%);
+            -webkit-backdrop-filter: blur(10px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-10px) scale(1.01);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-light), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(43, 138, 62, 0.2);
+            border: 1px solid var(--primary);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            margin: 5px;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .detail-grid { grid-template-columns: 1fr; }
+        }
+        /* QR Code Container */
+.qr-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    text-align: center;
+}
+
+.qr-container:hover {
+    transform: scale(1.1);
+    border-color: #2ecc71; /* AgriHub Green */
+}
+
+.qr-container img {
+    width: 100px;  /* Adjust size as needed */
+    height: 110px;
+    display: block;
+    border-radius: 8px;
+}
+
+.qr-container span {
+    color: white;
+    font-size: 0.7rem;
+    display: block;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+/* Hide on very small screens to save space */
+@media (max-width: 480px) {
+    .qr-container {
+        bottom: 10px;
+        right: 10px;
+        transform: scale(0.8);
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">AgriHub</div>
+        <div id="google_translate_element"></div>
+
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,am,om,ti,so,aa',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+}
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    </header>
+
+    <main class="wrap">
+        <section class="glass-panel fade-in">
+            <h1 class="gradient-text" style="font-size: 3rem; margin-bottom: 20px;">The Digital Harvest</h1>
+            <div class="detail-grid">
+                <div>
+                    <p>AgriHub isn't just a marketplace; it's a social revolution designed for the Ethiopian agricultural landscape. By digitizing the supply chain, we connect farmers in <strong>Gojjam, Sidama, and Oromia</strong> directly to urban centers like Addis Ababa.</p>
+                    <p style="margin-top: 15px;">Our goal is to eliminate the 'information asymmetry' that often leaves farmers underpaid. Through AgriHub, every kilo of <strong>Premium Teff</strong> or <strong>Sidama Coffee</strong> sold carries the value of the hard work put into the soil.</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 5rem; filter: drop-shadow(0 0 20px var(--primary));">🚜</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid">
+            <div class="glass-panel fade-in">
+                <h3 class="gradient-text">Our Tech Stack</h3>
+                <p class="muted" style="margin-bottom: 15px;">Designed for speed, responsiveness, and accessibility across all Ethiopian networks.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Flask Backend</span>
+                    <span class="tech-tag">Interactive JS</span>
+                    <span class="tech-tag">Glassmorphism UI</span>
+                    <span class="tech-tag">Local Storage Persistence</span>
+                    <span class="tech-tag">Responsive Grid</span>
+                </div>
+            </div>
+            <div class="glass-panel fade-in">
+                <h3 class="gradient-text">Sustainability</h3>
+                <p class="muted">We prioritize organic producers and eco-friendly farming cooperatives to ensure the long-term health of our Ethiopian highlands.</p>
+            </div>
+        </section>
+
+        <section class="glass-panel fade-in" style="border-left: 5px solid var(--primary);">
+            <div class="detail-grid" style="align-items: center;">
+                <div class="profile-pic">
+                    
+                    <h2 style="margin-top: 15px;">Dan Maregn</h2>
+                    <p class="muted">Lead Software Developer & Founder</p>
+                </div>
+                <div>
+                    <h3 class="gradient-text">Visionary Leadership</h3>
+                    <p>Dan Maregn developed AgriHub to solve real-world problems using high-end web technologies. With a focus on "animationful" user experiences, he ensures that the platform is not only functional but a joy to use for both farmers and buyers.</p>
+                    <div style="margin-top: 20px;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid" style="text-align: center; margin-top: 20px;">
+            <div class="glass-panel fade-in">
+                <h2 class="gradient-text">50+</h2>
+                <p class="muted">Agricultural Products</p>
+            </div>
+            <div class="glass-panel fade-in">
+                <h2 class="gradient-text">100%</h2>
+                <p class="muted">Digital Transparency</p>
+            </div>
+            <div class="glass-panel fade-in">
+                <h2 class="gradient-text">Local</h2>
+                <p class="muted">Ethiopian Focus</p>
+            </div>
+        </div>
+    </main>
+    <div class="chat-launcher" onclick="toggleChat()">
+    💬
+</div>
+
+<div id="chatWidget">
+    <div class="widget-header">
+        <span>AgriHub Assistant</span>
+        <span onclick="toggleChat()" style="cursor:pointer">✕</span>
+    </div>
+    <iframe src="chatbot.html" id="chatFrame"></iframe>
+</div>
+
+    <center><button class="btn-main" style="width: auto; padding: 30px 30px; margin: 30px;" onclick="window.location.href='tutorial.html'">Take Tutorial</button></center>
+
+    <script src="script.js"></script>
+    <script>
+function toggleChat() {
+    const widget = document.getElementById('chatWidget');
+    if (widget.style.display === 'none' || widget.style.display === '') {
+        widget.style.display = 'block';
+        widget.classList.add('fade-in'); // Reuse your existing animation
+    } else {
+        widget.style.display = 'none';
+    }
+}
+</script>
+</body>
+</html>

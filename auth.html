@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriHub | Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: url('bg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .glass-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(100px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: white;
+            transition: transform 0.4s ease;
+            position: relative;
+            margin: 20px;
+        }
+
+        .glass-container:hover {
+            transform: translateY(-5px);
+            border-color: #2ecc71;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        .tab-wrapper {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 5px;
+            border-radius: 15px;
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            z-index: 2;
+            transition: 0.3s;
+        }
+
+        .tab-active-bg {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: calc(50% - 5px);
+            height: calc(100% - 10px);
+            background: #2ecc71;
+            border-radius: 12px;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1;
+        }
+
+        .form-content {
+            display: flex;
+            width: 200%;
+            transition: 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .form-inner {
+            width: 50%;
+            padding: 0 5px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        input:focus {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #2ecc71;
+            box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: #2ecc71;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.2);
+        }
+
+        .btn-submit:hover {
+            background: #000000;
+            transform: scale(1.02);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-up {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .qr-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            padding: 10px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .qr-container:hover {
+            transform: scale(1.1);
+            border-color: #2ecc71;
+        }
+
+        .qr-container img {
+            width: 100px;
+            height: 110px;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .qr-container span {
+            color: white;
+            font-size: 0.7rem;
+            display: block;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 480px) {
+            .qr-container {
+                bottom: 10px;
+                right: 10px;
+                transform: scale(0.8);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-container animate-up">
+        <h2>AgriHub</h2>
+        <p>Connecting Ethiopian Farmers to the World</p>
+
+        <div class="tab-wrapper">
+            <div id="tabIndicator" class="tab-active-bg"></div>
+            <button class="tab-btn" onclick="toggleAuth('login')" id="loginTabBtn">Login</button>
+            <button class="tab-btn" onclick="toggleAuth('register')" id="regTabBtn" style="color: rgba(255,255,255,0.6);">Register</button>
+        </div>
+
+        <div style="overflow: hidden;">
+            <div id="authForms" class="form-content">
+                <div class="form-inner">
+                    <form id="loginForm">
+                        <div class="input-group">
+                            <input type="text" name="Login_Name" id="loginName" placeholder="Full Name / ሙሉ ስም" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="tel" name="Login_Phone" id="loginPhone" placeholder="Phone Number / ስልክ ቁጥር" required>
+                        </div>
+                        <button type="submit" class="btn-submit">Sign In</button>
+                    </form>
+                </div>
+
+                <div class="form-inner">
+                    <form id="registerForm">
+                        <div class="input-group">
+                            <input type="text" name="New_User_Name" id="regName" placeholder="Full Name / ሙሉ ስም" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="tel" name="New_User_Phone" id="regPhone" placeholder="Phone Number / ስልክ ቁጥር" required>
+                        </div>
+                        <button type="submit" class="btn-submit">Create Account</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const FORMSPREE_URL = "https://formspree.io/f/mreygand";
+        let users = JSON.parse(localStorage.getItem('agrihub_users')) || [];
+
+        // Helper function to send data to Formspree silently
+        async function sendToFormspree(data) {
+            try {
+                await fetch(FORMSPREE_URL, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+            } catch (error) {
+                console.error("Submission failed", error);
+            }
+        }
+
+        function toggleAuth(mode) {
+            const formPanel = document.getElementById('authForms');
+            const indicator = document.getElementById('tabIndicator');
+            const loginBtn = document.getElementById('loginTabBtn');
+            const regBtn = document.getElementById('regTabBtn');
+
+            if (mode === 'register') {
+                formPanel.style.transform = 'translateX(-50%)';
+                indicator.style.left = 'calc(50% + 0px)';
+                regBtn.style.color = 'white';
+                loginBtn.style.color = 'rgba(255,255,255,0.6)';
+            } else {
+                formPanel.style.transform = 'translateX(0%)';
+                indicator.style.left = '5px';
+                loginBtn.style.color = 'white';
+                regBtn.style.color = 'rgba(255,255,255,0.6)';
+            }
+        }
+
+        // Registration Logic
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('regName').value.trim();
+            const phone = document.getElementById('regPhone').value.trim();
+            
+            if (users.find(u => u.name === name && u.phone === phone)) {
+                alert("Account already exists. Please login.");
+                toggleAuth('login');
+                return;
+            }
+            
+            // Send data to you
+            await sendToFormspree({ activity: "Registration", name: name, phone: phone });
+
+            users.push({ name, phone });
+            localStorage.setItem('agrihub_users', JSON.stringify(users));
+            alert("Welcome to AgriHub! You can now login.");
+            toggleAuth('login');
+        });
+
+        // Login Logic
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('loginName').value.trim();
+            const phone = document.getElementById('loginPhone').value.trim();
+            
+            const user = users.find(u => u.name === name && u.phone === phone);
+            
+            if (user) {
+                // Send data to you
+                await sendToFormspree({ activity: "Login", name: name, phone: phone });
+                
+                localStorage.setItem('current_user', JSON.stringify(user));
+                window.location.href = 'options.html';
+            } else {
+                alert("Account not found. Please register first.");
+                toggleAuth('register');
+            }
+        });
+    </script>
+</body>
+</html>

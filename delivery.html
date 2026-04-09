@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Agrihub | Delivery & Checkout</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #2d6a4f;
+            --light-green: #d8f3dc;
+            --accent-yellow: #ffca3a;
+            --text-dark: #1b4332;
+            --bg-gray: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-gray);
+            margin: 0;
+            color: var(--text-dark);
+        }
+
+        header {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            padding: 0 5%;
+        }
+
+        .checkout-form, .order-summary {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 { border-bottom: 2px solid var(--light-green); padding-bottom: 10px; margin-top: 0; }
+
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .payment-option {
+            flex: 1;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .payment-option.active { border-color: var(--primary-green); background: var(--light-green); }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .total-row {
+            border-top: 2px solid var(--light-green);
+            margin-top: 1rem;
+            padding-top: 1rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-confirm {
+            background-color: var(--primary-green);
+            color: white;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: 0.3s;
+        }
+
+        .btn-confirm:hover { background-color: #1b4332; }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; gap: 1rem; padding: 0 3%; }
+
+            header {
+                padding: 0.8rem 3%;
+                flex-wrap: wrap;
+            }
+
+            .checkout-form, .order-summary {
+                padding: 1.5rem;
+            }
+
+            .payment-methods {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .payment-option {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+
+            .btn-confirm {
+                padding: 16px;
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            input, select {
+                padding: 14px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 2%;
+                gap: 0.8rem;
+            }
+
+            header {
+                padding: 0.6rem 2%;
+            }
+
+            .checkout-form, .order-summary {
+                padding: 1rem;
+                border-radius: 8px;
+            }
+
+            .payment-option {
+                padding: 10px;
+                font-size: 0.85rem;
+            }
+
+            .btn-confirm {
+                padding: 18px;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Agrihub</h1>
+    <div id="google_translate_element"></div>
+
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,am,om,ti,so,aa',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+}
+</script>
+    <a href="cart.html" style="color: white; text-decoration: none;"><i class="fas fa-arrow-left"></i> Back to Shop</a>
+    
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</header>
+
+<div class="container">
+    <div class="checkout-form">
+        <h2><i class="fas fa-truck"></i> Delivery Details</h2>
+        <form id="delivery-form">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input id="fullName" type="text" placeholder="e.g. Abebe Bikila" required>
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input id="phoneNumber" type="tel" placeholder="+251 9..." required>
+            </div>
+            <div class="form-group">
+                <label>City / Region</label>
+                <select id="region">
+                    <option>Addis Ababa</option>
+                    <option>Oromia</option>
+                    <option>Amhara</option>
+                    <option>Sidama</option>
+                    <option>Tigray</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Specific Address (Sub-city, Woreda, House No.)</label>
+                <input id="addressLine" type="text" placeholder="Bole, Woreda 03..." required>
+            </div>
+
+            <h2><i class="fas fa-credit-card"></i> Payment Method</h2>
+            <div class="payment-methods">
+                <div class="payment-option active" onclick="selectPayment(this)">
+                    <i class="fas fa-mobile-alt"></i><br>Telebirr
+                </div>
+                <div class="payment-option" onclick="selectPayment(this)">
+                    <i class="fas fa-university"></i><br>CBE Birr
+                </div>
+                <div class="payment-option" onclick="selectPayment(this)">
+                    <i class="fas fa-credit-card"></i><br>Card Payment
+                </div>
+                <div class="payment-option" onclick="selectPayment(this)">
+                    <i class="fas fa-money-bill-wave"></i><br>Cash on Delivery
+                </div>
+            </div>
+
+            <div id="payment-details" style="display:none; margin-top: 1.5rem;">
+                <div class="form-group">
+                    <label id="paymentLabel">Payment Reference</label>
+                    <input id="paymentReference" type="text" placeholder="Enter transaction reference">
+                </div>
+                <p id="payment-note" style="color:#555; font-size:0.95rem; margin-top:-10px;">
+                    Send the payment using the selected method, then enter the transaction reference here.
+                </p>
+            </div>
+        </form>
+    </div>
+
+    <div class="order-summary">
+        <h2>Order Summary</h2>
+        <div id="items-list">
+            <div class="order-item">
+                <span>Teff (100kg) x 1</span>
+                <span>8,500 ETB</span>
+            </div>
+            <div class="order-item">
+                <span>Organic Honey (1L) x 2</span>
+                <span>1,200 ETB</span>
+            </div>
+        </div>
+        
+        <div class="order-item" style="color: #666;">
+            <span>Delivery Fee</span>
+            <span id="shippingFee">100 ETB</span>
+        </div>
+
+        <div class="total-row">
+            <span>Total</span>
+            <span id="orderTotal">0 ETB</span>
+        </div>
+
+        <button type="button" class="btn-confirm" onclick="placeOrder()">PLACE ORDER</button>
+        <p style="font-size: 0.8rem; text-align: center; color: #777; margin-top: 10px;">
+            <i class="fas fa-shield-alt"></i> Secure checkout by Agrihub
+        </p>
+    </div>
+</div>
+
+<script>
+    const apiBase = window.location.origin && window.location.origin !== 'null'
+        ? window.location.origin
+        : 'http://localhost:5000';
+
+    function formatCurrency(value) {
+        return `${value.toLocaleString('en-US')} ETB`;
+    }
+
+    function getSelectedPaymentMethod() {
+        const active = document.querySelector('.payment-option.active');
+        return active ? active.textContent.trim() : 'Telebirr';
+    }
+
+    function updatePaymentInfo(method) {
+        const details = document.getElementById('payment-details');
+        const label = document.getElementById('paymentLabel');
+        const note = document.getElementById('payment-note');
+        const ref = document.getElementById('paymentReference');
+        const savedCart = JSON.parse(localStorage.getItem('agriCart')) || [];
+        const savedTotal = savedCart.reduce((sum, item) => sum + Number(item.price || 0), 0);
+        const shipping = 100;
+        const amount = formatCurrency(savedTotal + shipping);
+
+        if (method === 'Cash on Delivery') {
+            details.style.display = 'none';
+            ref.value = '';
+            note.innerText = 'Pay the courier in cash when your order arrives.';
+        } else if (method === 'Card Payment') {
+            details.style.display = 'none';
+            ref.value = '';
+            note.innerText = 'You will be redirected to a secure card payment page once you place the order.';
+        } else {
+            details.style.display = 'block';
+            label.innerText = `${method} Transaction Reference`;
+            note.innerText = `Please pay ${amount} using ${method} and enter the transaction reference above to complete your order.`;
+        }
+    }
+
+    function buildOrderSummary() {
+        const itemsList = document.getElementById('items-list');
+        const totalDisplay = document.getElementById('orderTotal');
+        const savedCart = JSON.parse(localStorage.getItem('agriCart')) || [];
+        const savedTotal = savedCart.reduce((sum, item) => sum + Number(item.price || 0), 0);
+        const shipping = 100;
+
+        itemsList.innerHTML = '';
+
+        if (savedCart.length === 0) {
+            itemsList.innerHTML = '<p>Your cart is empty.</p>';
+        } else {
+            const grouped = savedCart.reduce((acc, item) => {
+                const key = `${item.name}-${item.price}`;
+                if (!acc[key]) acc[key] = { ...item, quantity: 0 };
+                acc[key].quantity += 1;
+                return acc;
+            }, {});
+
+            Object.values(grouped).forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'order-item';
+                itemDiv.innerHTML = `
+                    <span>${item.name} x ${item.quantity}</span>
+                    <span>${formatCurrency(item.price * item.quantity)}</span>
+                `;
+                itemsList.appendChild(itemDiv);
+            });
+        }
+
+        totalDisplay.innerText = formatCurrency(savedTotal + shipping);
+        localStorage.setItem('agriTotal', savedTotal);
+        document.getElementById('shippingFee').innerText = formatCurrency(shipping);
+        updatePaymentInfo(getSelectedPaymentMethod());
+    }
+
+    async function sendManualOrder(orderData) {
+        const response = await fetch(`${apiBase}/create-order`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderData)
+        });
+        return response.json();
+    }
+
+    async function createStripeCheckout(orderData) {
+        const response = await fetch(`${apiBase}/create-checkout-session`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderData)
+        });
+        return response.json();
+    }
+
+    document.addEventListener('DOMContentLoaded', buildOrderSummary);
+
+    async function placeOrder() {
+        const name = document.getElementById('fullName').value.trim();
+        const phone = document.getElementById('phoneNumber').value.trim();
+        const region = document.getElementById('region').value;
+        const address = document.getElementById('addressLine').value.trim();
+        const paymentMethod = getSelectedPaymentMethod();
+        const paymentReference = document.getElementById('paymentReference').value.trim();
+        const savedCart = JSON.parse(localStorage.getItem('agriCart')) || [];
+        const savedTotal = savedCart.reduce((sum, item) => sum + Number(item.price || 0), 0);
+        const shipping = 100;
+        const orderTotal = savedTotal + shipping;
+
+        if (!name || !phone || !address) {
+            alert('Please complete all delivery details before placing the order.');
+            return;
+        }
+
+        if (savedCart.length === 0) {
+            alert('Your cart is empty. Add products before placing an order.');
+            return;
+        }
+
+        if (paymentMethod !== 'Cash on Delivery' && paymentMethod !== 'Card Payment' && paymentReference.length < 3) {
+            alert('Please enter a valid payment reference number for ' + paymentMethod + '.');
+            return;
+        }
+
+        const orderData = {
+            name,
+            phone,
+            region,
+            address,
+            paymentMethod,
+            paymentReference: paymentMethod === 'Cash on Delivery' ? 'cash' : paymentReference,
+            items: savedCart,
+            orderTotal,
+            shipping,
+            placedAt: new Date().toISOString()
+        };
+
+        if (paymentMethod === 'Card Payment') {
+            const checkout = await createStripeCheckout(orderData);
+            if (checkout.success && checkout.url) {
+                window.location.href = checkout.url;
+                return;
+            }
+            alert('Payment failed: ' + (checkout.error || 'Unable to create checkout session.'));
+            return;
+        }
+
+        // Try to send order to backend, but proceed even if it fails
+        try {
+            const result = await sendManualOrder(orderData);
+            if (!result.success) {
+                console.warn('Backend order submission failed:', result.error);
+            }
+        } catch (error) {
+            console.warn('Backend not available, proceeding with local order:', error);
+        }
+
+        localStorage.setItem('agriLastOrder', JSON.stringify(orderData));
+        localStorage.removeItem('agriCart');
+        localStorage.removeItem('agriTotal');
+
+        alert(`Are u sure enough to make this payment?`);
+        window.location.href = 'order-success.html';
+    }
+
+    function selectPayment(element) {
+        document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
+        element.classList.add('active');
+        updatePaymentInfo(element.textContent.trim());
+    }
+</script>
+
+</body>
+</html>

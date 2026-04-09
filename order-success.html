@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agrihub | Order Confirmed</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #2d6a4f;
+            --light-green: #d8f3dc;
+            --accent-yellow: #ffca3a;
+            --text-dark: #1b4332;
+            --bg-gray: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-gray);
+            margin: 0;
+            color: var(--text-dark);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .success-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .order-details {
+            text-align: left;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: var(--light-green);
+            border-radius: 8px;
+        }
+
+        .order-details h3 {
+            margin-top: 0;
+            color: var(--primary-green);
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .total-row {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--primary-green);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-home {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 2rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-home:hover {
+            background-color: #1b4332;
+        }
+
+        .delivery-info {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #fff3cd;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-yellow);
+        }
+
+        @media (max-width: 768px) {
+            .success-container {
+                padding: 2rem 1rem;
+                margin: 1rem;
+            }
+
+            .success-icon {
+                font-size: 3rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .order-details {
+                padding: 1rem;
+            }
+
+            .order-details h3 {
+                font-size: 1.2rem;
+            }
+
+            .order-item {
+                font-size: 0.9rem;
+            }
+
+            .total-row {
+                font-size: 1rem;
+            }
+
+            .btn-home {
+                padding: 14px 20px;
+                font-size: 0.95rem;
+            }
+
+            .delivery-info {
+                padding: 1rem;
+            }
+
+            .delivery-info h3 {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .success-container {
+                padding: 1.5rem 0.8rem;
+                margin: 0.5rem;
+            }
+
+            .success-icon {
+                font-size: 2.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 0.95rem;
+            }
+
+            .order-details {
+                padding: 0.8rem;
+            }
+
+            .btn-home {
+                width: 100%;
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="success-container">
+    <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+    </div>
+    <h1>Order Confirmed!</h1>
+    <p>Thank you for choosing Agrihub. Your fresh Ethiopian produce is on its way.</p>
+
+    <div class="order-details" id="orderSummary">
+        <h3>Order Summary</h3>
+        <div id="orderItems"></div>
+        <div class="order-item">
+            <span>Delivery Fee</span>
+            <span id="deliveryFee">250 ETB</span>
+        </div>
+        <div class="total-row">
+            <span>Total</span>
+            <span id="orderTotal">0 ETB</span>
+        </div>
+    </div>
+
+    <div class="delivery-info">
+        <h3><i class="fas fa-truck"></i> Delivery Information</h3>
+        <p id="deliveryDetails">Your order will be delivered within 2-3 business days. We'll send you updates via SMS.</p>
+    </div>
+
+    <a href="home.html" class="btn-home">Continue Shopping</a>
+</div>
+
+<script>
+    function formatCurrency(value) {
+        return `${value.toLocaleString('en-US')} ETB`;
+    }
+
+    function loadOrderDetails() {
+        const lastOrder = JSON.parse(localStorage.getItem('agriLastOrder'));
+        if (!lastOrder) {
+            // For Stripe payments or if localStorage is cleared
+            document.getElementById('orderSummary').innerHTML = '<p>Your payment was successful! Order details will be sent to you via SMS.</p>';
+            document.querySelector('.delivery-info').innerHTML = '<h3><i class="fas fa-truck"></i> What\'s Next?</h3><p>Your order has been confirmed and payment processed. You will receive delivery updates via SMS within the next 2-3 business days.</p>';
+            return;
+        }
+
+        const itemsContainer = document.getElementById('orderItems');
+        const totalDisplay = document.getElementById('orderTotal');
+        const deliveryFee = document.getElementById('deliveryFee');
+        const deliveryDetails = document.getElementById('deliveryDetails');
+
+        itemsContainer.innerHTML = '';
+
+        if (lastOrder.items && lastOrder.items.length > 0) {
+            const grouped = lastOrder.items.reduce((acc, item) => {
+                const key = `${item.name}-${item.price}`;
+                if (!acc[key]) acc[key] = { ...item, quantity: 0 };
+                acc[key].quantity += 1;
+                return acc;
+            }, {});
+
+            Object.values(grouped).forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'order-item';
+                itemDiv.innerHTML = `
+                    <span>${item.name} x ${item.quantity}</span>
+                    <span>${formatCurrency(item.price * item.quantity)}</span>
+                `;
+                itemsContainer.appendChild(itemDiv);
+            });
+        }
+
+        totalDisplay.innerText = formatCurrency(lastOrder.orderTotal || 0);
+        deliveryFee.innerText = formatCurrency(lastOrder.shipping || 250);
+
+        let paymentNote = '';
+        if (lastOrder.paymentMethod === 'Cash on Delivery') {
+            paymentNote = 'Please have cash ready for the delivery person.';
+        } else if (lastOrder.paymentMethod === 'Card Payment') {
+            paymentNote = 'Your card payment has been processed successfully.';
+        } else {
+            paymentNote = `Payment reference: ${lastOrder.paymentReference}`;
+        }
+
+        deliveryDetails.innerHTML = `
+            <strong>Delivery Address:</strong> ${lastOrder.address}, ${lastOrder.region}<br>
+            <strong>Contact:</strong> ${lastOrder.name} - ${lastOrder.phone}<br>
+            <strong>Payment Method:</strong> ${lastOrder.paymentMethod}<br>
+            ${paymentNote}<br><br>
+            Your order will be delivered within 2-3 business days. We'll send you updates via SMS.
+        `;
+    }
+
+    document.addEventListener('DOMContentLoaded', loadOrderDetails);
+</script>
+
+</body>
+</html></content>
+<parameter name="filePath">
